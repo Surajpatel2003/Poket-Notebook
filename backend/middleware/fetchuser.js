@@ -4,12 +4,12 @@ const JWT_SECRET = "iamsuraj2003";
 
 const fetchuser = (req, res, next) => {
   // Get the user from the jwt token and add id to req object
-  const token = req.header("auth-token");
+  const token = req.header("auth-token"); // intiatally we have to add manually in post man
   if (!token) {
     res.status(401).send({ error: "Please authenticate using a valid token" });
   }
   try {
-    const data = jwt.verify(token, JWT_SECRET);
+    const data = jwt.verify(token, JWT_SECRET); // it will give user id from jwt token
     req.user = data.user;
     next();
   } catch (error) {
